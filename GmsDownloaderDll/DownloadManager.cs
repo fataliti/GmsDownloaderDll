@@ -56,6 +56,7 @@ namespace GmsDownloaderDll
                 return -1.0;
             }
             _downloads[downloadId].CancelDownload();
+            _downloads[downloadId].Dispose();
             _downloads.Remove(downloadId);
             return 1.0;
         }

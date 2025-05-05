@@ -5,7 +5,7 @@ using System.Net;
 
 namespace GmsDownloaderDll
 {
-    internal class Download
+    internal class Download : IDisposable
     {
         private static double _id;
 
@@ -59,6 +59,12 @@ namespace GmsDownloaderDll
         public void CancelDownload()
         {
             _wc.CancelAsync();
+        }
+
+
+        public void Dispose()
+        {
+            _wc.Dispose();
         }
     }
 }
