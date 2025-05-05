@@ -7,26 +7,28 @@ namespace GmsDownloaderDll
 {
     internal class Download
     {
-        private readonly WebClient _wc = new WebClient();
-
         private static double _id;
 
+        private WebClient _wc;
         public int Progress;
-
-        public readonly double Id;
-
-        public readonly string Name;
-
+        public  double Id;
+        public string Name;
         public double Complete;
 
         public Download(string link, string fileName)
         {
             Id = _id++;
             Name = fileName;
+            _wc = new WebClient();
             _wc.DownloadProgressChanged += ProgressChanged;
             _wc.DownloadFileCompleted += Completed;
             _wc.DownloadFileAsync(new Uri(link), fileName);
             Console.WriteLine("Download start with Id: " + Id);
+        }
+
+        public void AddHeader(string name, string value)
+        {
+            _wc.Headers.Add(name, value);
         }
 
         private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)

@@ -26,6 +26,18 @@ namespace GmsDownloaderDll
             return download.Id;
         }
 
+
+        [DllExport("DownloadAddHeader")]
+        public static double AddHeader(double downloadId, string name, string value)
+        {
+            if (!_downloads.ContainsKey(downloadId))
+            {
+                return -1.0;
+            }
+            _downloads[downloadId].AddHeader(name, value);
+            return 1.0;
+        }
+
         [DllExport("DownloadDelete")]
         public static double DownloadDelete(double downloadId)
         {
