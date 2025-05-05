@@ -15,13 +15,19 @@ namespace GmsDownloaderDll
         public string Name;
         public double Complete;
 
-        public Download(string link, string fileName)
+        public Download()
         {
             Id = _id++;
-            Name = fileName;
             _wc = new WebClient();
             _wc.DownloadProgressChanged += ProgressChanged;
             _wc.DownloadFileCompleted += Completed;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            Console.WriteLine("Download create with Id: " + Id);
+        }
+
+        public void DownloadStart(string link, string fileName)
+        {
+            Name = fileName;
             _wc.DownloadFileAsync(new Uri(link), fileName);
             Console.WriteLine("Download start with Id: " + Id);
         }

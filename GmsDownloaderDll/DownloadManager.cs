@@ -17,13 +17,23 @@ namespace GmsDownloaderDll
             return dir;
         }
 
-
-        [DllExport("DownloadFile")]
-        public static double DownloadFile(string link, string fileName)
+        [DllExport("DownloadCreate")]
+        public static double DownloadCreate()
         {
-            Download download = new Download(link, _downDir + fileName);
+            Download download = new Download();
             _downloads.Add(download.Id, download);
             return download.Id;
+        }
+
+        [DllExport("DownloadFile")]
+        public static double DownloadFile(double downloadId, string link, string fileName)
+        {
+            if (!_downloads.ContainsKey(downloadId))
+            {
+                return -1.0;
+            }
+            _downloads[downloadId].DownloadStart(link, _downDir + fileName);
+            return 1.0;
         }
 
 
