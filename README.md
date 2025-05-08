@@ -11,11 +11,11 @@ Cancels and removes a download instance. If the download is in progress, it will
 Starts file download for the specified instance.
 ### `DownloadGetProgress(id)`
 Gets the current download progress percentage `(0-100)`
-### `DownloadIsComplete(id)`
+### `DownloadGetStatus(id)`
 Checks the completion status of a download.
 - `1.0` - Download completed successfully
 - `0.0` - Download in progress 
-- `-1.0` - Download failed or was aborted
-- `-2.0` - Download Id doesn't exis
+- `-2.0` - Download failed or was aborted
+- `-1.0` - Download Id doesn't exis
 ### `DownloadGetResult(id)`
 Gets the full path to the downloaded file.
