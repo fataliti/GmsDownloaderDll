@@ -46,7 +46,7 @@ namespace GmsDownloaderDll
         {
             if (e.Error != null)
             {
-                Complete = -1.0;
+                Complete = -2.0;
                 Console.WriteLine("Download failed: " + Id);
             }
             else

@@ -63,12 +63,12 @@ namespace GmsDownloaderDll
             return Convert.ToDouble(_downloads[downloadId].Progress);
         }
 
-        [DllExport("DownloadIsComplete")]
-        public static double DownloadIsComplete(double downloadId)
+        [DllExport("DownloadGetStatus")]
+        public static double DownloadGetStatus(double downloadId)
         {
             if (!_downloads.ContainsKey(downloadId))
             {
-                return -2.0;
+                return -1.0;
             }
             return _downloads[downloadId].Complete;
         }

@@ -39,6 +39,7 @@ draw_text(370, 160, string(progress));
 draw_text(370, 180, string(download_result));
 draw_text(370, 200, string("is complete {0}", download.is_complete()));
 draw_text(370, 220, string("is failed {0}", download.is_failed()));
+draw_text(370, 240, string("status {0}", download.get_status()));
 draw_set_color(c_blue);
 draw_line_width(150, 160, 350, 160, 6);
 draw_set_color(c_green);
