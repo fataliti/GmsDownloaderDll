@@ -11,17 +11,17 @@ namespace GmsDownloaderDll
 
         private WebClient _wc;
         public int Progress;
-        public  double Id;
+        public double Id;
         public string Name;
         public double Complete;
 
         public Download()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             Id = _id++;
             _wc = new WebClient();
             _wc.DownloadProgressChanged += ProgressChanged;
             _wc.DownloadFileCompleted += Completed;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             Console.WriteLine("Download create with Id: " + Id);
         }
 

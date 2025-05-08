@@ -8,14 +8,6 @@ namespace GmsDownloaderDll
     {
         private static Dictionary<double, Download> _downloads = new Dictionary<double, Download>();
 
-        private static string _downDir = "";
-
-        [DllExport("DownloadDirectory")]
-        public static string DownloadDirectory(string dir)
-        {
-            _downDir = dir;
-            return dir;
-        }
 
         [DllExport("DownloadCreate")]
         public static double DownloadCreate()
@@ -32,7 +24,7 @@ namespace GmsDownloaderDll
             {
                 return -1.0;
             }
-            _downloads[downloadId].DownloadStart(link, _downDir + fileName);
+            _downloads[downloadId].DownloadStart(link, fileName);
             return 1.0;
         }
 
@@ -61,8 +53,8 @@ namespace GmsDownloaderDll
             return 1.0;
         }
 
-        [DllExport("DownloadStatus")]
-        public static double DownloadStatus(double downloadId)
+        [DllExport("DownloadGetProgress")]
+        public static double DownloadGetProgress(double downloadId)
         {
             if (!_downloads.ContainsKey(downloadId))
             {
@@ -71,8 +63,8 @@ namespace GmsDownloaderDll
             return Convert.ToDouble(_downloads[downloadId].Progress);
         }
 
-        [DllExport("DownloadComplete")]
-        public static double DownloadComplete(double downloadId)
+        [DllExport("DownloadIsComplete")]
+        public static double DownloadIsComplete(double downloadId)
         {
             if (!_downloads.ContainsKey(downloadId))
             {
@@ -81,14 +73,14 @@ namespace GmsDownloaderDll
             return _downloads[downloadId].Complete;
         }
 
-        [DllExport("DownloadResult")]
-        public static string DownloadResult(double downloadId)
+        [DllExport("DownloadGetResult")]
+        public static string DownloadGetResult(double downloadId)
         {
             if (!_downloads.ContainsKey(downloadId))
             {
                 return "";
             }
-            return (_downDir == "") ? (Directory.GetCurrentDirectory() + "\\" + _downloads[downloadId].Name) : _downloads[downloadId].Name;
+            return _downloads[downloadId].Name;
         }
     }
 }
