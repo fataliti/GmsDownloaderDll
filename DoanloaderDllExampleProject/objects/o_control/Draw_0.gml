@@ -34,11 +34,11 @@ button(20, 150, "start", method(self, function() /*=>*/ {
 }));
 
 var progress = download.get_progress();
-var download_status = download.get_result();
-var is_complete = download.is_complete();
+var download_result = download.get_result();
 draw_text(370, 160, string(progress));
-draw_text(370, 180, string(download_status));
-draw_text(370, 200, string("is complete {0}", is_complete));
+draw_text(370, 180, string(download_result));
+draw_text(370, 200, string("is complete {0}", download.is_complete()));
+draw_text(370, 220, string("is failed {0}", download.is_failed()));
 draw_set_color(c_blue);
 draw_line_width(150, 160, 350, 160, 6);
 draw_set_color(c_green);

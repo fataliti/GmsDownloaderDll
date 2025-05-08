@@ -18,7 +18,11 @@ function Download() constructor {
     }
     
     static is_complete = function() {
-        return downloadIsComplete(__id);
+        return downloadIsComplete(__id) == 1;
+    }
+    
+    static is_failed = function() {
+        return downloadIsComplete(__id) == -1;
     }
     
     static get_result = function() {
